@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style> 
+     *{
+         margin:0;
+         padding:0;
+     }
+      .box{
+        /*display:flex;*/
+        background:lightblue;
+        height:400px;
+        width:400px;
+        border:2px solid black;
+
+      }
+      .flex{
+          display:flex;
+          flex-direction:row;
+      }
+      /*.btn{
+          font-size:3rem;
+          font-weight:bolder;
+          border:2px solid blue;
+          padding:2rem;
+      }
+      input{
+          font-size:1rem;
+          font-weight:bloder;
+          margin:2em;
+          height:100px;
+          width:300px;
+
+      }
+     */
+         
+     
+    </style>
+</head>
+<body>
+    <div class="container flex">
+    <div class="box global btn "> <h1>Global Box </h1></div>
+    <div class="box india btn"><h1>India Box </h1>
+     <!--<input type="text" >
+     <button> submit </button>-->
+    </div>
+    
+    </div>
+    <script>
+     window.onload=function(){
+        // submitBtn.onclick=function(){
+         let globalBox=document.querySelector(".global")
+         let inputBox=document.querySelector("input")
+         let indiaBox=document.querySelector(".india")
+        //  let submitBtn=document.querySelector("submit")
+        //  let userString=''
+        //  let d=await fetch("https://api.covid19api.com/summary")
+        //  d=await d.json()
+         let d=fetch("https://api.covid19api.com/summary")
+         .then(d=>d.json())
+         .then(d=>{
+             let v=d.Global.TotalDeaths
+             globalBox.innerHTML=`<h1> ${v} </h>`
+             let {Countries}=d
+             const[india]=Countries.filter(c=>c.Country=="India")
+             indiaBox.innerHTML=`<h1> ${india.TotalDeaths} </h1>`
+            indiaBox.innerHTML=`<h1> ${e} </h1>`
+            
+            
+         })
+     }
+    </script>
+</body>
+</html>
